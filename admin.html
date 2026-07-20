@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head><title>لوحة تحكم البوت</title></head>
+<body>
+    <h1>🔧 لوحة التحكم - البوت الأسطوري</h1>
+    <h2>إدارة الجلسات</h2>
+    <form method="post">
+        <input type="text" name="phone" placeholder="رقم الهاتف" required>
+        <input type="text" name="code" placeholder="الكود" required>
+        <input type="hidden" name="action" value="add_session">
+        <button type="submit">➕ إضافة جلسة</button>
+    </form>
+    <ul>
+        {% for s in sessions %}
+        <li>{{ s[1] }} 
+            <form method="post" style="display:inline;">
+                <input type="hidden" name="session_id" value="{{ s[0] }}">
+                <input type="hidden" name="action" value="delete_session">
+                <button type="submit">🗑️ حذف</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>🎁 إنشاء كود هدية</h2>
+    <form method="post">
+        <input type="number" name="points" placeholder="عدد النقاط" required>
+        <input type="hidden" name="action" value="generate_gift">
+        <button type="submit">إنشاء الكود</button>
+    </form>
+
+    <h2>👥 مجموعات الاشتراك</h2>
+    <form method="post">
+        <input type="text" name="group_id" placeholder="معرف المجموعة" required>
+        <input type="hidden" name="action" value="add_subscription_group">
+        <button type="submit">➕ إضافة مجموعة</button>
+    </form>
+</body>
+</html>
